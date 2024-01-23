@@ -1,0 +1,19 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
+
+{% block page_product_detail_tabs %}
+    {% if page.luiSimilarProducts %}
+        {% sw_include '@LuidevRecommendSimilarProducts/storefront/component/product/luidev-similar-products-slider.html.twig' with {
+            products: page.luiSimilarProducts
+        } %}
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}
+
+
+{% block page_product_detail %}
+    {{ parent() }}
+    {% sw_include '@@LuidevRecommendSimilarProducts/storefront/component/product/luidev-product-statistics.html.twig' with {
+        product: page.product
+    } %}
+{% endblock %}

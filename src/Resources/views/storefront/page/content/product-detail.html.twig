@@ -1,0 +1,9 @@
+{% sw_extends '@Storefront/storefront/page/content/product-detail.html.twig' %}
+
+{% block base_main_inner %}
+    {{ parent() }}
+
+    {% sw_include '@@LuidevRecommendSimilarProducts/storefront/component/product/luidev-product-statistics.html.twig' with {
+        product: page.product
+    } %}
+{% endblock %}

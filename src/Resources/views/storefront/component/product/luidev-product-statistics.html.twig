@@ -1,0 +1,8 @@
+{% set luidevProductStatisticsOptions = {
+    'productId': product.id,
+    'parentId' : product.parentId,
+    'url': path('frontend.luidev.statistics.click')
+} %}
+
+<div data-luidev-product-statistics="true"
+     data-luidev-product-statistics-options="{{ luidevProductStatisticsOptions|json_encode }}"></div>

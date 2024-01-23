@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="LuidevRecommendSimilarProducts\Service\ProductDataService">
+            <argument type="service" id="sales_channel.product.repository"/>
+        </service>
+        <service id="LuidevRecommendSimilarProducts\ScheduledTask\ProductProcessTask">
+            <tag name="shopware.scheduled.task" />
+        </service>
+        <service id="LuidevRecommendSimilarProducts\ScheduledTask\ProductProcessTaskHandler">
+            <tag name="messenger.message_handler"/>
+            <argument type="service" id="scheduled_task.repository"/>
+            <argument type="service" id="LuidevRecommendSimilarProducts\Service\SimilarProductService"/>
+        </service>
+        <service id="LuidevRecommendSimilarProducts\Service\PluginConfigService">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+        </service>
+        <service id="LuidevRecommendSimilarProducts\Service\SalesChannelDataService">
+            <argument type="service" id="sales_channel.repository"/>
+        </service>
+        <service id="LuidevRecommendSimilarProducts\Command\ProductProcessCommand">
+            <tag name="console.command"/>
+            <argument type="service" id="LuidevRecommendSimilarProducts\Service\SimilarProductService"/>
+        </service>
+        <service id="LuidevRecommendSimilarProducts\Components\HttpClient\GuzzleFactory"/>
+        <service id="LuidevRecommendSimilarProducts\Service\ApiService">
+            <argument type="service" id="LuidevRecommendSimilarProducts\Components\HttpClient\GuzzleFactory"/>
+            <argument type="service" id="LuidevRecommendSimilarProducts\Service\PluginConfigService"/>
+        </service>
+        <service id="LuidevRecommendSimilarProducts\Subscriber\ProductLoadedEventSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="LuidevRecommendSimilarProducts\Service\ApiService"/>
+            <argument type="service" id="LuidevRecommendSimilarProducts\Service\ProductDataService"/>
+            <argument type="service" id="LuidevRecommendSimilarProducts\Service\PluginConfigService"/>
+        </service>
+        <service id="LuidevRecommendSimilarProducts\Helper\SimilarProductHelper"/>
+        <service id="LuidevRecommendSimilarProducts\Service\SimilarProductService">
+            <argument type="service" id="LuidevRecommendSimilarProducts\Service\SalesChannelDataService"/>
+            <argument type="service" id="LuidevRecommendSimilarProducts\Service\ProductDataService"/>
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextFactory"/>
+            <argument type="service" id="LuidevRecommendSimilarProducts\Service\ApiService"/>
+            <argument type="service" id="LuidevRecommendSimilarProducts\Helper\SimilarProductHelper"/>
+            <argument type="service" id="luidev.ai.logger"/>
+            <argument type="service" id="LuidevRecommendSimilarProducts\Service\PluginConfigService"/>
+        </service>
+        <service id="luidev.ai.logger" class="Monolog\Logger">
+            <factory service="Shopware\Core\Framework\Log\LoggerFactory" method="createRotating"/>
+                <argument type="string">luidev-ai-logger</argument>
+        </service>
+
+        <service id="LuidevRecommendSimilarProducts\Storefront\Controller\RecommendSimilarProductsController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <argument type="service" id="LuidevRecommendSimilarProducts\Service\ApiService"/>
+            <argument type="service" id="LuidevRecommendSimilarProducts\Service\PluginConfigService"/>
+        </service>
+        <service id="LuidevRecommendSimilarProducts\Subscriber\IntervalUpdateSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="LuidevRecommendSimilarProducts\Service\ScheduledTaskDataService"/>
+            <argument type="service" id="LuidevRecommendSimilarProducts\Service\SystemConfigDataService"/>
+        </service>
+        <service id="LuidevRecommendSimilarProducts\Service\ScheduledTaskDataService" >
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+        </service>
+        <service id="LuidevRecommendSimilarProducts\Service\SystemConfigDataService">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+        </service>
+        <service id="LuidevRecommendSimilarProducts\Api\Controller\LuibotApiController" public="true">
+            <argument type="service" id="LuidevRecommendSimilarProducts\Service\ApiService"/>
+        </service>
+    </services>
+</container>

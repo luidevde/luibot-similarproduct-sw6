@@ -1,0 +1,48 @@
+{% block luidev_similar_products_slider_container %}
+    <div class="luidev-similar-products-slider-container"
+         data-luidev-similar-products-clicks="true">
+        {% block luidev_similar_product_slider %}
+            {% set config = {
+                'title': {
+                    'value': 'luidev.similar-products.slider.title'|trans
+                },
+                'border': {
+                    'value': false
+                },
+                'rotate': {
+                    'value': false
+                },
+                'products': {
+                    'value': products
+                },
+                'boxLayout': {
+                    'value': 'standard'
+                },
+                'elMinWidth': {
+                    'value': '300px'
+                },
+                'navigation': {
+                    'value': true
+                },
+                'displayMode': {
+                    'value': 'minimal'
+                },
+                'verticalAlign': {
+                    'value': 'top'
+                },
+            } %}
+
+            {% sw_include "@Storefront/storefront/element/cms-element-product-slider.html.twig" with {
+                sliderConfig: config,
+                element: {
+                    'data': {
+                        'products': {
+                            elements: products
+                        }
+                    },
+                    type: 'product-slider'
+                }
+            } %}
+        {% endblock %}
+    </div>
+{% endblock %}

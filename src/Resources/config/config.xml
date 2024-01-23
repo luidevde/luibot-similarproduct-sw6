@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+    <card>
+        <title>Common config</title>
+        <title lang="de-DE">Allgemeine Konfiguration</title>
+        <input-field type="bool">
+            <name>active</name>
+            <label>Active for Sales Channel</label>
+            <label lang="de-DE">Aktiviert für Verkaufskanal</label>
+            <helpText>Enables the plugin for the current sales channel.</helpText>
+            <helpText lang="de-DE">Aktiviert das Plugin für den aktuellen Verkaufskanal.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+    </card>
+    <card>
+        <title>Credentials: Luibot</title>
+        <title lang="de-DE">Zugangsdaten: Luibot</title>
+
+        <input-field>
+            <name>username</name>
+            <label>Luibot Account Email</label>
+            <label lang="de-DE">E-Mail des Luibot-Kontos</label>
+            <helpText>Enter the email address you use for your Luibot account.</helpText>
+            <helpText lang="de-DE">Geben Sie die E-Mail-Adresse ein, die Sie für Ihr Luibot-Konto verwenden.</helpText>
+        </input-field>
+
+        <input-field>
+            <name>apiKey</name>
+            <label>API Key</label>
+            <label lang="de-DE">API-Schlüssel</label>
+            <helpText>Enter your Luibot API key, which can be found in your account settings at app.luibot.com. You can copy and paste the API key here.</helpText>
+            <helpText lang="de-DE">Geben Sie Ihren Luibot API-Schlüssel ein, den Sie in Ihren Kontoeinstellungen auf app.luibot.com finden können. Sie können den API-Schlüssel kopieren und hier einfügen.</helpText>
+        </input-field>
+
+        <input-field>
+            <name>apiUrl</name>
+            <label>API URL</label>
+            <label lang="de-DE">API URL</label>
+            <defaultValue>https://api.luibot.com/api</defaultValue>
+            <helpText>Please do not change the Luibot API URL. Default value: https://api.luibot.com/api</helpText>
+            <helpText lang="de-DE">Bitte ändern Sie die Luibot API-URL nicht. Standardwert: https://api.luibot.com/api</helpText>
+        </input-field>
+        <component name="luibot-api-test-button">
+            <name>apiTest</name>
+            <label>Test API credentials</label>
+            <label lang="de-DE">API-Zugangsdaten testen</label>
+        </component>
+    </card>
+
+    <card>
+        <title>Number of products in slider</title>
+        <title lang="de-DE">Produktanzahl im Slider</title>
+
+
+        <input-field type="int">
+            <name>limit</name>
+            <label>Maximum number of products displayed in the slider</label>
+            <label lang="de-DE">Maximal angezeigte Produkte im Slider</label>
+            <helpText>Recommended setting: 4-12 products. By default, 10 products are loaded to optimize loading times in the slider.</helpText>
+            <helpText lang="de-DE">Empfohlene Einstellung: 4-12 Produkte. Standardmäßig werden 10 Produkte geladen, um Ladezeiten im Slider zu optimieren.</helpText>
+            <placeholder>10</placeholder>
+            <defaultValue>10</defaultValue>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Cronjob Configuration</title>
+        <title lang="de-DE">Cronjob-Konfiguration</title>
+
+        <input-field type="int">
+            <name>interval</name>
+            <label>Auto-execution of AI training - Interval (in seconds, minimum 86400)</label>
+            <label lang="de-DE">Auto-Ausführung von AI-Trainings - Intervall (in Sekunden, mindestens 86400)</label>
+            <defaultValue>86400</defaultValue>
+            <helpText>Enter the cronjob interval in seconds. The minimum value is 86400, and this value applies to all sales channels.</helpText>
+            <helpText lang="de-DE">Geben Sie das Intervall für den Cronjob in Sekunden ein. Der Mindestwert beträgt 86400 und gilt für alle Verkaufskanäle.</helpText>
+        </input-field>
+    </card>
+</config>
