@@ -88,7 +88,7 @@ Revolutionize your shopping experience with Luibot - Your AI-optimized shopping 
 
 ## Benefits and Overview
 
-✔ Personalized product recommendations <br>
+✔ Customized Product Recommendations <br>
 ✔ Increased revenue through enhanced conversion <br>
 ✔ Improved customer satisfaction <br>
 ✔ Time-saving for shop owners <br>
@@ -96,7 +96,7 @@ Revolutionize your shopping experience with Luibot - Your AI-optimized shopping 
 
 ## Highlights
 
-🌟 Personalized product recommendations: Precise AI analyses for tailored suggestions to boost revenue <br>
+🌟 Customized Product Recommendations: Precise AI analyses for tailored suggestions to boost revenue <br>
 🌟 Precisely trained product images: Luibot automates recommendations of similar products for your shop success <br>
 🌟 Easy Shopware integration: Automatic synchronization and optimization of your product images <br>
 🌟 Time-saving through automation: Luibot automates recommendations, saves time, and enhances the shopping experience <br>
