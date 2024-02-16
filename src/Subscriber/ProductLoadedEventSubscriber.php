@@ -37,7 +37,7 @@ class ProductLoadedEventSubscriber implements EventSubscriberInterface
     ): void {
         $salesChannelId = $event->getSalesChannelContext()->getSalesChannelId();
 
-        if ($this->pluginConfigService->getConfigByName('active', $salesChannelId)) {
+        if (!$this->pluginConfigService->getConfigByName('active', $salesChannelId)) {
             return;
         }
 
